@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
 var ass2vtt = require('./')
-var minimist = require('minimist')
+var yargs = require('yargs-parser')
 var fs = require('fs')
 
-var argv = minimist(process.argv.slice(2), {
+var argv = yargs(process.argv.slice(2), {
   alias: {out:'o', help:'h', delay:'d'},
+  number: ["delay"],
   default: {out:'-'}
 })
 
