@@ -114,7 +114,7 @@ module.exports = function() {
   }
 
   var parse = through.obj(write)
-  parse.push('WEBVTT FILE\r\n\r\n')
+  parse.push('WEBVTT\r\n\r\n')
   return pumpify(split(), parse)
 }
 
