@@ -5,7 +5,7 @@ var minimist = require('minimist')
 var fs = require('fs')
 
 var argv = minimist(process.argv.slice(2), {
-  alias: {out:'o', help:'h'},
+  alias: {out:'o', help:'h', delay:'d'},
   default: {out:'-'}
 })
 
@@ -19,7 +19,10 @@ process.stdout.on('error', function(err) {
 })
 
 var filename = argv._[0] || '-'
+var options = {
+  delay: argv.delay
+}
 var input = filename === '-' ? process.stdin : fs.createReadStream(filename)
 var output = argv.out === '-' ? process.stdout : fs.createWriteStream(argv.out)
 
-input.pipe(ass2vtt()).pipe(output)
+input.pipe(ass2vtt(options)).pipe(output)
